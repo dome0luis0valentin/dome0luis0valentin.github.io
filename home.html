@@ -1,70 +1,111 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Playapp</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  
+
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
-
-    .max-h-4px{
-        height: 8rem;
+    body {
+      font-family: 'Inter', sans-serif;
     }
-    #log-section{
+
+    .max-h-4px {
+      height: 8rem;
+    }
+
+    #log-section {
       padding: 4rem;
     }
-    #ayuda-ref{
+
+    #ayuda-ref {
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
     .option-header {
-        width: 100%;
-      }
+      width: 100%;
+    }
+
     /* Use a media query to add a break point at 800px: */
     @media screen and (max-width: 800px) {
       .option-header {
         width: 10%;
       }
-      .option-header-container{
+
+      .option-header-container {
         width: 100%;
       }
     }
   </style>
 </head>
+
 <body class="bg-gray-100 text-gray-800">
 
   <!-- Header -->
-  <header class="bg-gray-900 shadow-md">
+  <header class="bg-gray-900 shadow-md" x-data="{ open: false }">
     <div class="option-header-container mx-auto px-4 py-4 flex items-center justify-between">
-      <div class="option-header items-center space-x-2">
+      <div class="option-header items-center space-x-2 flex">
         <img src="https://img.icons8.com/ios-filled/50/ffffff/beach.png" alt="Logo de Playapp" class="h-6">
         <span class="font-bold text-white text-xl">Playapp</span>
       </div>
+
+      <!-- Botón de menú para móviles -->
+      <button @click="open = !open" class="text-white md:hidden focus:outline-none">
+        ☰
+      </button>
+
+      <!-- Menú desktop -->
       <nav class="option-header space-x-6 hidden md:flex">
-        <a id="ayuda-ref" href="#" class="option-header text-white hover:text-gray-500">Ayuda</a>
-        <a id="ayuda-ref" href="#" class="option-header text-white hover:text-gray-500">Conocé más</a>
+        <a href="#" class="option-header text-white hover:text-white focus:outline-none 
+          px-4 py-2 flex justify-center items-center border border-transparent 
+          hover:border-white focus:border-white rounded transition">
+          Ayuda
+        </a>
+        <a href="#" class="option-header text-white hover:text-white focus:outline-none 
+          px-4 py-2 flex justify-center items-center border border-transparent 
+          hover:border-white focus:border-white rounded transition">
+          Conocé más
+        </a>
         <button class="option-header border px-6 py-2 rounded bg-white hover:text-gray-500">Registrame</button>
         <button class="option-header border px-6 py-2 rounded bg-white hover:text-gray-500">Logearme</button>
       </nav>
-     
     </div>
+
+    <!-- Menú móvil -->
+    <nav x-show="open" x-transition class="md:hidden bg-gray-800 px-4 pt-2 pb-4 space-y-2 text-white"
+      @click.outside="open = false">
+      <a href="#" class="block text-white px-4 py-2 text-center rounded border border-transparent 
+          hover:border-white focus:border-white focus:outline-none transition">
+        Ayuda
+      </a>
+      <a href="#" class="block text-white px-4 py-2 text-center rounded border border-transparent 
+          hover:border-white focus:border-white focus:outline-none transition">
+        Conocé más
+      </a>
+      <button class="w-full border px-4 py-2 rounded bg-white text-gray-800 hover:bg-gray-100">Registrame</button>
+      <button class="w-full border px-4 py-2 rounded bg-white text-gray-800 hover:bg-gray-100">Logearme</button>
+    </nav>
   </header>
+
 
   <!-- Hero Section -->
   <section class="bg-white py-12 px-4 md:px-8">
     <div class="container mx-auto flex flex-col md:flex-row items-center gap-10">
       <div class="flex-1">
         <h1 class="text-6xl font-bold mb-4">Encontrá la mejor playa para vos y tu familia</h1>
-        <p class="mb-6 text-gray-600">¿Alguna vez te preguntaste qué tan segura, higiénica, bonita o tranquila es playa a la que querés ir?</p>
+        <p class="mb-6 text-gray-600">¿Alguna vez te preguntaste qué tan segura, higiénica, bonita o tranquila es playa
+          a la que querés ir?</p>
       </div>
       <div class="flex-1">
-        <img src="https://infogei.com/uploads/noticias/2/2023/01/20230107182009_rio.jpg" alt="Playa destacada" class="rounded-lg shadow-md">
+        <img src="https://infogei.com/uploads/noticias/2/2023/01/20230107182009_rio.jpg" alt="Playa destacada"
+          class="rounded-lg shadow-md">
       </div>
     </div>
   </section>
@@ -73,35 +114,90 @@
   <section class="py-10" role="main" aria-label="Carrusel de imagenes de playas del Río de la Plata">
     <h2 class="text-center text-xl font-semibold mb-6">Conoce cuáles son las mejores playas del Río de la Plata</h2>
     <div class="flex justify-center gap-3 overflow-x-auto px-4 max-h-4px">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHfiR2ya7m-Se19ZqHxhP5EORNzw3tR6IKqw&s" class="rounded shadow-sm" alt="Varias personas nadando en el río en un día soleado" tabindex="0">
-      <img src="https://www.clarin.com/img/2018/11/07/GTFKkcrYC_1256x620__1.jpg" class="rounded shadow-sm" alt="Paisaje de la playa vacía" tabindex="0">
-      <img src="https://www.clarin.com/img/2016/08/16/r1lQG3MRXl_720x0.jpg" class="rounded shadow-sm" alt="Camino al lado del río, con árboles a un costado, que dan sombra" tabindex="0">
-      <img src="https://www.cronica.com.ar/img/2023/01/07/punta_indio-argentinaturismo_com_ar_crop1673108242203.jpg?__scale=w:1200,h:900,t:2,fpx:821,fpy:575" class="rounded shadow-sm" alt="Árbol a la orilla de una playa" tabindex="0">
-      <img src="https://www.baenegocios.com/img/2023/10/26/buenosairesplaya-escapada.jpg?__scale=c:transparent,w:745,h:419,t:3" class="rounded shadow-sm" alt="Río a la izquierda, separado por una baranda de seguridad, un camino y tiendas" tabindex="0">
-      <img src="https://conocer365.uy/wp-content/uploads/2019/01/kiy%C3%BA-barranca-intensify.jpg" class="rounded shadow-sm" alt="Imagén de la arena de la playa" tabindex="0">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHfiR2ya7m-Se19ZqHxhP5EORNzw3tR6IKqw&s"
+        class="rounded shadow-sm" alt="Varias personas nadando en el río en un día soleado" tabindex="0">
+      <img src="https://www.clarin.com/img/2018/11/07/GTFKkcrYC_1256x620__1.jpg" class="rounded shadow-sm"
+        alt="Paisaje de la playa vacía" tabindex="0">
+      <img src="https://www.clarin.com/img/2016/08/16/r1lQG3MRXl_720x0.jpg" class="rounded shadow-sm"
+        alt="Camino al lado del río, con árboles a un costado, que dan sombra" tabindex="0">
+      <img
+        src="https://www.cronica.com.ar/img/2023/01/07/punta_indio-argentinaturismo_com_ar_crop1673108242203.jpg?__scale=w:1200,h:900,t:2,fpx:821,fpy:575"
+        class="rounded shadow-sm" alt="Árbol a la orilla de una playa" tabindex="0">
+      <img
+        src="https://www.baenegocios.com/img/2023/10/26/buenosairesplaya-escapada.jpg?__scale=c:transparent,w:745,h:419,t:3"
+        class="rounded shadow-sm" alt="Río a la izquierda, separado por una baranda de seguridad, un camino y tiendas"
+        tabindex="0">
+      <img src="https://conocer365.uy/wp-content/uploads/2019/01/kiy%C3%BA-barranca-intensify.jpg"
+        class="rounded shadow-sm" alt="Imagén de la arena de la playa" tabindex="0">
     </div>
     <p class="text-center text-sm mt-4 text-gray-600">Tu opinión también cuenta</p>
   </section>
-  
-    <!-- Testimonials -->
-    <section class="py-12 px-4" role="main" aria-label="testimonios">
-      <h2 class="text-center text-xl font-semibold mb-8">Algunas opiniones</h2>
-      <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        <div class="bg-white p-4 rounded-lg shadow text-sm" role="main" aria-label="Opinion 1">
-          <p>Sin lugar a dudas la playa de Punta Lara es la mejor a la que mi familia y yo hemos ido!!!</p>
-          <div class="mt-4 text-gray-500 text-xs">Esteban Trabajos • 8:21 PM / Dec 21, 2022</div>
+
+  <!-- Testimonials -->
+  <section class="py-12 px-4" role="main" aria-label="testimonios">
+    <h2 class="text-center text-xl font-semibold mb-8">Algunas opiniones</h2>
+    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+      <!-- Testimonio 1 -->
+      <div class="bg-white p-6 rounded-lg shadow text-sm border border-gray-200">
+        <div class="flex items-center gap-3 mb-3">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Esteban Trabajos"
+            class="w-10 h-10 rounded-full">
+          <div>
+            <div class="flex items-center gap-1">
+              <span class="font-semibold text-gray-900">Esteban Trabajos</span>
+              <img src="https://img.icons8.com/ios-filled/16/777777/verified-account--v1.png" alt="Verificado"
+                class="w-4 h-4">
+            </div>
+            <span class="text-gray-500 text-xs">@et_manzanas99</span>
+          </div>
         </div>
-        <div class="bg-white p-4 rounded-lg shadow text-sm" role="main" aria-label="Opinion 2">
-          <p>He estado recorriendo muchas de las playas del Río de la Plata en este último mes, y he notado que es mucho más tranquilo ir los días de semana.</p>
-          <div class="mt-4 text-gray-500 text-xs">Billy Puertas • 8:21 PM / Dec 21, 2022</div>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow text-sm" role="main" aria-label="Opinion 3">
-          <p>Hace años que voy a la misma playa, todos los veranos, sin dudas Punta Indio es la mejor.</p>
-          <div class="mt-4 text-gray-500 text-xs">Armando Paredes • 8:21 PM / Dec 21, 2022</div>
-        </div>
+        <p class="text-gray-800 mb-3">Sin lugar a dudas la playa de Punta Lara es la mejor a la que mi familia y yo
+          hemos ido!!!</p>
+        <div class="text-gray-500 text-xs">8:21 PM / Dec 21, 2022</div>
       </div>
-    </section>
-  
+
+      <!-- Testimonio 2 -->
+      <div class="bg-white p-6 rounded-lg shadow text-sm border border-gray-200">
+        <div class="flex items-center gap-3 mb-3">
+          <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Billy Puertas" class="w-10 h-10 rounded-full">
+          <div>
+            <div class="flex items-center gap-1">
+              <span class="font-semibold text-gray-900">Billy Puertas</span>
+              <img src="https://img.icons8.com/ios-filled/16/777777/verified-account--v1.png" alt="Verificado"
+                class="w-4 h-4">
+            </div>
+            <span class="text-gray-500 text-xs">@bpuertas</span>
+          </div>
+        </div>
+        <p class="text-gray-800 mb-3">He estado recorriendo muchas de las playas del Río de la Plata en este último mes,
+          y he notado que es mucho más tranquilo ir los días de semana.</p>
+        <div class="text-gray-500 text-xs">8:21 PM / Dec 21, 2022</div>
+      </div>
+
+      <!-- Testimonio 3 -->
+      <div class="bg-white p-6 rounded-lg shadow text-sm border border-gray-200">
+        <div class="flex items-center gap-3 mb-3">
+          <img src="https://randomuser.me/api/portraits/men/60.jpg" alt="Armando Paredes"
+            class="w-10 h-10 rounded-full">
+          <div>
+            <div class="flex items-center gap-1">
+              <span class="font-semibold text-gray-900">Armando Paredes</span>
+              <img src="https://img.icons8.com/ios-filled/16/777777/verified-account--v1.png" alt="Verificado"
+                class="w-4 h-4">
+            </div>
+            <span class="text-gray-500 text-xs">@paredes_real</span>
+          </div>
+        </div>
+        <p class="text-gray-800 mb-3">Hace años que voy a la misma playa, todos los veranos, sin dudas Punta Indio es la
+          mejor.</p>
+        <div class="text-gray-500 text-xs">8:21 PM / Dec 21, 2022</div>
+      </div>
+
+    </div>
+  </section>
+
+
   <!-- Features -->
   <section class="bg-white py-12">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto text-center">
@@ -132,25 +228,37 @@
   <div class="mx-auto py-12  rounded-lg shadow-md">
     <section class="mx-auto max-w-md bg-white">
       <div id="log-section">
-        <h2 class="text-center text-xl font-semibold mb-6">Registro de Usuarios</h2>
-        <form action="D:\vd\Documents\Facultad 2024\DEU\project\dome0luis0valentin.github.io\search.html" class="space-y-4">
-          <label class="p-2">Nombre de Usuario<input id="input_name" type="text" placeholder="John Doe" aria-label="Nombre de usuario" class="w-full border p-2 rounded"></label>
-          <label class="p-2">Email <input type="email" placeholder="ejemplo@gmail.com" aria-label="Email del usuario" class="w-full border p-2 rounded">
-          <label class="p-2">Contraseña <input type="password" placeholder="123456" class="w-full border p-2 rounded"></label>
-          <div class="py-2">
-            <button class="bg-gray-800 text-white w-full px-6 py-2 rounded"> 
-              Ingresar
-            </button>
-          </div>
+        <h2 class="text-center text-xl font-semibold mb-6">INGRESAR</h2>
+        <form action="D:\vd\Documents\Facultad 2024\DEU\project\dome0luis0valentin.github.io\search.html"
+          class="space-y-4">
+          <label class="p-2">Nombre de Usuario<input id="input_name" type="text" placeholder="John Doe"
+              aria-label="Nombre de usuario" class="w-full border p-2 rounded"></label>
+          <label class="p-2">Email <input type="email" placeholder="ejemplo@gmail.com" aria-label="Email del usuario"
+              class="w-full border p-2 rounded">
+            <label class="p-2">Contraseña <input type="password" placeholder="123456"
+                class="w-full border p-2 rounded"></label>
+            <div class="py-2">
+              <button class="bg-gray-800 text-white w-full px-6 py-2 rounded">
+                Ingresar
+              </button>
+            </div>
         </form>
         <p class="text-center mt-4 text-sm pb-2">¿Aún no tenés una cuenta?</p>
         <div class="py-2">
           <button class="bg-gray-800 text-white w-full px-6 py-2 rounded">Registrarme</button>
         </div>
         <div class="flex justify-center gap-4 mt-4">
-          <button class="border flex-1 py-2 rounded">Ingresar con Google</button>
-          <button class="border flex-1 py-2 rounded">Ingresar con Facebook</button>
+          <button class="border flex-1 py-2 rounded flex items-center justify-center gap-2">
+            <img src="https://img.icons8.com/color/20/google-logo.png" alt="Google logo" class="w-5 h-5 ml-3">
+            Ingresar con Google
+          </button>
+          <button class="border flex-1 py-2 rounded flex items-center justify-center gap-2">
+            <img src="https://img.icons8.com/ios-filled/20/1877F2/facebook-new.png" alt="Facebook logo"
+              class="w-5 h-5 ml-3">
+            Ingresar con Facebook
+          </button>
         </div>
+
       </div>
     </section>
   </div>
@@ -160,10 +268,14 @@
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center px-4">
       <div class="flex space-x-4">
         <span>Follow us</span>
-        <a href="#" aria-label="Link a página de Facebook de Playapp"><img src="https://img.icons8.com/ios-filled/20/facebook.png" alt="Logo de Facebook"></a>
-        <a href="#" aria-label="Link a perfil de Instagram de Playapp"><img src="https://img.icons8.com/ios-filled/20/instagram-new.png" alt="Logo de Instagram"></a>
-        <a href="#" aria-label="Link a perfil de red social X de Playapp"><img src="https://img.icons8.com/ios-filled/20/x.png" alt="Link de red social X"></a>
-        <a href="#" aria-label="Link a canal de Youtube de Playapp"><img src="https://img.icons8.com/ios-filled/20/youtube-play.png" alt="Link de Youtube"></a>
+        <a href="#" aria-label="Link a página de Facebook de Playapp"><img
+            src="https://img.icons8.com/ios-filled/20/facebook.png" alt="Logo de Facebook"></a>
+        <a href="#" aria-label="Link a perfil de Instagram de Playapp"><img
+            src="https://img.icons8.com/ios-filled/20/instagram-new.png" alt="Logo de Instagram"></a>
+        <a href="#" aria-label="Link a perfil de red social X de Playapp"><img
+            src="https://img.icons8.com/ios-filled/20/x.png" alt="Link de red social X"></a>
+        <a href="#" aria-label="Link a canal de Youtube de Playapp"><img
+            src="https://img.icons8.com/ios-filled/20/youtube-play.png" alt="Link de Youtube"></a>
       </div>
       <div class="mt-4 md:mt-0">
         <label class="text-sm">Inscribite a nuestra Newsletter:
@@ -178,4 +290,5 @@
   </footer>
 
 </body>
+
 </html>
