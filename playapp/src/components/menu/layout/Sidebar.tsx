@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTheme } from "@/app/context/ThemeContext";
+import Link from 'next/link';
 
 interface SidebarProps {
   isOpen: boolean;
