@@ -1,8 +1,12 @@
+// src/app/menu/ajustes/page.tsx
+
+// Importamos el componente cliente
+import AjustesClient from "../../../components/menu/ajustes/AjustesClient";
+
+export const metadata = {
+  title: "Ajustes | Playapp",
+};
+
 export default function AjustesPage() {
-  return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold">Página de Ajustes</h2>
-      <p>Contenido de ajustes...</p>
-    </div>
-  );
+  return <AjustesClient />;
 }
