@@ -1,3 +1,4 @@
+
 // src/data/beaches.ts
 export const beachLevelIconUrls = {
   nivel1: '/images/1.png',
