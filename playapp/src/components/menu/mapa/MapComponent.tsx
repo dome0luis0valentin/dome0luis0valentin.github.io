@@ -1,5 +1,3 @@
-// /components/menu/mapa/MapComponent.tsx
-
 "use client";
 
 import { useSidebar } from "@/context/SidebarContext";
@@ -14,18 +12,17 @@ import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import DropdownFilter from "./DropdownFilter";
 
 import BeachStatsPanel from "@/components/menu/mapa/BeachStatsPanel";
-import MapViewUpdater from "./MapViewUpdater"; // ajustá la ruta según corresponda
+import MapViewUpdater from "./MapViewUpdater";
 
 import styles from "./MapComponent.module.css";
 
 import { useBeaches } from "@/app/context/BeachesContext";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
-import { useTheme } from "@/app/context/ThemeContext"; // ✅
+import { useTheme } from "@/app/context/ThemeContext";
 
 import { IconLevel, beachLevelIconUrls, faceIcons } from "@/data/beaches";
-import { useState } from "react";
 
 const getScoreLevel = (score: number): number => {
   if (score >= 7) return 1; // Nivel alto (verde)
@@ -65,17 +62,16 @@ const createIcon = (url: string) =>
 
 export default function MapComponent() {
   const { darkMode } = useTheme();
+
+  const { beachesWithScores, selectedFilters, filteredScoresByFilter } = useBeaches();
+
   // Estado para seleccionar una playa
   const [selectedBeach, setSelectedBeach] = useState<number | null>(null);
-  const [mapCenter, setMapCenter] = useState<[number, number]>([
-    -34.89, -57.922,
-  ]);
+  const [mapCenter, setMapCenter] = useState<[number, number]>([-34.89, -57.922]);
   const [mapZoom, setMapZoom] = useState(11);
 
-  const { beachesWithScores } = useBeaches();
-
   const handleShowStats = (index: number) => {
-    const beach = beachesWithScores[index]; // accedés al objeto completo
+    const beach = beachesWithScores[index];
     setSelectedBeach(index);
     setMapCenter(beach.coords);
     setMapZoom(15);
@@ -91,105 +87,103 @@ export default function MapComponent() {
         sidebarOpen ? "pointer-events-none" : "pointer-events-auto"
       }`}
     >
-      <MapContainer
-        center={mapCenter}
-        zoom={mapZoom}
-        className="w-full h-full min-h-0 z-0"
-      >
+      <MapContainer center={mapCenter} zoom={mapZoom} className="w-full h-full min-h-0 z-0">
         <TileLayer
           attribution="&copy; OpenStreetMap contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {/* 🔁 Aquí actualizás el centro y zoom dinámicamente */}
         <MapViewUpdater center={mapCenter} zoom={mapZoom} />
 
         <MarkerClusterGroup>
-          {beachesWithScores.map(({ coords, name, scores }, index) => (
-            <Marker
-              key={name}
-              position={coords as L.LatLngExpression}
-              icon={createIcon(
-                beachLevelIconUrls[
-                  getIcon[getScoreLevel(scores?.finalScore ?? 1)]
-                ]
-              )}
-              ref={(el) => {
-                markerRefs.current[index] = el;
-              }}
-            >
-              <Tooltip
-                permanent
-                direction="left"
-                offset={[-30, -20]}
-                className={styles.transparentTooltip}
-              >
-                {name}
-              </Tooltip>
-              <Popup>
-                <div
-                  style={{
-                    textAlign: "center",
-                    fontFamily: "sans-serif",
-                    padding: "0.5rem",
-                    backgroundColor: darkMode ? "#1f2937" : "#ffffff", // dark: gray-800
-                    color: darkMode ? "#f3f4f6" : "#111827", // dark: gray-100
-                    borderRadius: "8px",
-                    boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-                  }}
-                >
-                  <div
-                    style={{
-                      backgroundColor:
-                        getColor[getScoreLevel(scores?.finalScore ?? 1)],
-                      color:
-                        getScoreLevel(scores?.finalScore ?? 1) < 3
-                          ? "#000"
-                          : "#fff",
-                      padding: "0.25rem 0.5rem",
-                      borderRadius: "5px",
-                      fontWeight: "bold",
-                      fontSize: "1.1rem",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    {name}
-                  </div>
+          {beachesWithScores.map(({ coords, name, scores, id }, index) => {
+            // Si hay filtros, usar puntaje filtrado, sino usar finalScore
+            const scoreToUse =
+              selectedFilters.length > 0 && filteredScoresByFilter
+                ? filteredScoresByFilter[id] ?? (scores?.finalScore ?? 1)
+                : scores?.finalScore ?? 1;
 
+            const level = getScoreLevel(scoreToUse);
+
+            return (
+              <Marker
+                key={name}
+                position={coords as L.LatLngExpression}
+                icon={createIcon(beachLevelIconUrls[getIcon[level]])}
+                ref={(el) => {
+                  markerRefs.current[index] = el;
+                }}
+              >
+                <Tooltip
+                  permanent
+                  direction="left"
+                  offset={[-30, -20]}
+                  className={styles.transparentTooltip}
+                >
+                  {name}
+                </Tooltip>
+                <Popup>
                   <div
                     style={{
-                      backgroundColor: darkMode ? "#374151" : "#f0f0f0", // dark: gray-700
-                      border: `1px solid ${darkMode ? "#4b5563" : "#ccc"}`, // gray-600
-                      padding: "0.75rem",
-                      borderRadius: "5px",
+                      textAlign: "center",
+                      fontFamily: "sans-serif",
+                      padding: "0.5rem",
+                      backgroundColor: darkMode ? "#1f2937" : "#ffffff",
+                      color: darkMode ? "#f3f4f6" : "#111827",
+                      borderRadius: "8px",
+                      boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
                     }}
                   >
-                    <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>
-                      {faceCondition[getScoreLevel(scores?.finalScore ?? 1)]}
-                    </div>
-                    <div style={{ fontWeight: "bold", fontSize: "1rem" }}>
-                      Puntaje: {scores?.finalScore ?? 1}/10
-                    </div>
-                    <button
-                      onClick={() => {
-                        handleShowStats(index);
-                        markerRefs.current[index]?.closePopup();
+                    <div
+                      style={{
+                        backgroundColor: getColor[level],
+                        color: level < 3 ? "#000" : "#fff",
+                        padding: "0.25rem 0.5rem",
+                        borderRadius: "5px",
+                        fontWeight: "bold",
+                        fontSize: "1.1rem",
+                        marginBottom: "0.5rem",
                       }}
-                      className={`mt-3 w-full font-semibold py-2 px-4 rounded-md shadow transition-colors duration-200 ${
-                        darkMode
-                          ? "bg-white text-gray-900 hover:bg-gray-200"
-                          : "bg-black text-white hover:bg-gray-800"
-                      }`}
                     >
-                      Ver estadísticas
-                    </button>
+                      {name}
+                    </div>
+
+                    <div
+                      style={{
+                        backgroundColor: darkMode ? "#374151" : "#f0f0f0",
+                        border: `1px solid ${darkMode ? "#4b5563" : "#ccc"}`,
+                        padding: "0.75rem",
+                        borderRadius: "5px",
+                      }}
+                    >
+                      <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>
+                        {faceCondition[level]}
+                      </div>
+                      <div style={{ fontWeight: "bold", fontSize: "1rem" }}>
+                        Puntaje: {scoreToUse.toFixed(2)}/10
+                      </div>
+                      <button
+                        onClick={() => {
+                          handleShowStats(index);
+                          markerRefs.current[index]?.closePopup();
+                        }}
+                        className={`mt-3 w-full font-semibold py-2 px-4 rounded-md shadow transition-colors duration-200 ${
+                          darkMode
+                            ? "bg-white text-gray-900 hover:bg-gray-200"
+                            : "bg-black text-white hover:bg-gray-800"
+                        }`}
+                      >
+                        Ver estadísticas
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </Popup>
-            </Marker>
-          ))}
+                </Popup>
+              </Marker>
+            );
+          })}
         </MarkerClusterGroup>
       </MapContainer>
-      {/* Aquí el dropdown con posición absoluta */}
+
+      {/* DropdownFilter en posición absoluta */}
       {selectedBeach === null && (
         <div
           className={`absolute top-4 right-4 z-10 ${
@@ -201,7 +195,7 @@ export default function MapComponent() {
       )}
 
       {/* Panel de estadísticas */}
-      {selectedBeach != null && (
+      {selectedBeach !== null && (
         <div className="absolute bottom-0 w-full flex justify-center z-10 pointer-events-auto">
           <BeachStatsPanel
             beach={beachesWithScores[selectedBeach]}

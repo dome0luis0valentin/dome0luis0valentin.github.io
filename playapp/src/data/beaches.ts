@@ -76,7 +76,6 @@ export const beachLocations: Beach[] = [
 ];
 
 
-
 export const beachRatings: Record<number, UserRating[]> = {
   1: [
     {
@@ -223,13 +222,13 @@ export const beachRatings: Record<number, UserRating[]> = {
 
 // Funciones
 
-function roundScore(value: number): number {
+export function roundScore(value: number): number {
   if (value < 1) return 1;
   if (value > 4) return 4;
   return Math.round(value);
 }
 
-function scaleToTen(value: number): number {
+export function scaleToTen(value: number): number {
   return +(1 + (value - 1) * 3).toFixed(2);
 }
 
