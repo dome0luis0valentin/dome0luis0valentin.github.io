@@ -9,7 +9,6 @@ const config = {
 
   darkMode: "class",
   theme: {
-    extend: {},
   },
   plugins: [
     importantPlugin

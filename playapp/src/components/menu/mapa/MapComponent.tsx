@@ -1,8 +1,17 @@
+// /src/components/menu/mapa/MapComponent.tsx
+
 "use client";
 
 import { useSidebar } from "@/context/SidebarContext";
 
-import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Tooltip,
+  ZoomControl,
+} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -63,11 +72,14 @@ const createIcon = (url: string) =>
 export default function MapComponent() {
   const { darkMode } = useTheme();
 
-  const { beachesWithScores, selectedFilters, filteredScoresByFilter } = useBeaches();
+  const { beachesWithScores, selectedFilters, filteredScoresByFilter } =
+    useBeaches();
 
   // Estado para seleccionar una playa
   const [selectedBeach, setSelectedBeach] = useState<number | null>(null);
-  const [mapCenter, setMapCenter] = useState<[number, number]>([-34.89, -57.922]);
+  const [mapCenter, setMapCenter] = useState<[number, number]>([
+    -34.89, -57.922,
+  ]);
   const [mapZoom, setMapZoom] = useState(11);
 
   const handleShowStats = (index: number) => {
@@ -87,7 +99,14 @@ export default function MapComponent() {
         sidebarOpen ? "pointer-events-none" : "pointer-events-auto"
       }`}
     >
-      <MapContainer center={mapCenter} zoom={mapZoom} className="w-full h-full min-h-0 z-0">
+      <MapContainer
+        center={mapCenter}
+        zoom={mapZoom}
+        className="w-full h-full min-h-0 z-0"
+        zoomControl={false} // primero desactivamos el control por defecto
+      >
+        {/* Añadimos el control con la posición deseada */}
+        <ZoomControl position="bottomright" />
         <TileLayer
           attribution="&copy; OpenStreetMap contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -99,7 +118,7 @@ export default function MapComponent() {
             // Si hay filtros, usar puntaje filtrado, sino usar finalScore
             const scoreToUse =
               selectedFilters.length > 0 && filteredScoresByFilter
-                ? filteredScoresByFilter[id] ?? (scores?.finalScore ?? 1)
+                ? filteredScoresByFilter[id] ?? scores?.finalScore ?? 1
                 : scores?.finalScore ?? 1;
 
             const level = getScoreLevel(scoreToUse);

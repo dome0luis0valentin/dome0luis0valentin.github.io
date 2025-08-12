@@ -1,3 +1,5 @@
+// /src/components/menu/layout/Topbar.tsx
+
 "use client";
 
 import { useTheme } from "@/app/context/ThemeContext";
@@ -22,14 +24,17 @@ export default function Topbar({
       <div className="flex items-center gap-2 flex-shrink-0">
         <button
           id="menuToggle"
-          className={`text-2xl ${darkMode ? "text-white" : "text-black"}`}
+          className={`text-2xl ${
+            darkMode ? "text-white" : "text-black"
+          } sm:hidden`}
           onClick={onToggleSidebar}
           aria-label="Toggle menu"
         >
           ☰
         </button>
+
         {/* Mostrar saludo solo en pantallas un poco más grandes */}
-        <h1 className="text-lg font-semibold hidden xs:block">
+        <h1 className="text-lg font-semibold hidden sm:block">
           Bienvenido John
         </h1>
       </div>

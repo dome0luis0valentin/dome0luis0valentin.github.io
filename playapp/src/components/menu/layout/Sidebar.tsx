@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import { useTheme } from "@/app/context/ThemeContext";
-import Link from 'next/link';
+import Link from "next/link";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -25,26 +25,37 @@ export default function Sidebar({ isOpen, onClose, active }: SidebarProps) {
 
       <aside
         id="sidebar"
-        className={`fixed md:relative w-64 ${
-          darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
-        } flex flex-col justify-between p-4 h-full z-40 transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-        }`}
+        className={`fixed md:relative
+    w-64 md:w-64
+    max-w-full
+    [@media(max-width:222px)]:w-[90vw] 
+    [@media(max-width:222px)]:max-w-[222px]
+    ${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"}
+    flex flex-col justify-between p-4
+    [@media(max-width:222px)]:p-2
+    h-full z-40
+    transition-transform duration-300 ease-in-out
+    ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+  `}
       >
         <div className="flex flex-col flex-grow overflow-auto">
-          <p className="mt-2 text-sm block md:hidden">
-            Bienvenido John
-          </p>
+          <p className="mt-2 text-sm block md:hidden">Bienvenido John</p>
 
           <div className="flex justify-end md:hidden mb-4">
-            <button onClick={onClose} className="text-2xl">
+            <button
+              onClick={onClose}
+              className="text-2xl p-1 mr-1"
+              aria-label="Cerrar sidebar"
+            >
               ✖
             </button>
           </div>
 
           <div className="flex items-center mb-10">
             <Image
-              src={`/images/${darkMode ? "beach-white.png" : "beach-black.png" }`}
+              src={`/images/${
+                darkMode ? "beach-white.png" : "beach-black.png"
+              }`}
               width={32}
               height={32}
               alt="Logo de Playapp"
@@ -94,7 +105,9 @@ export default function Sidebar({ isOpen, onClose, active }: SidebarProps) {
           </nav>
         </div>
 
-        <hr className={`${darkMode ? "border-gray-700" : "border-gray-300"} my-4`} />
+        <hr
+          className={`${darkMode ? "border-gray-700" : "border-gray-300"} my-4`}
+        />
 
         <div className="mt-auto space-y-2">
           <Link
