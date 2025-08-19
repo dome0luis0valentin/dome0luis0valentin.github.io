@@ -113,7 +113,7 @@ export default function Sidebar({ isOpen, onClose, active }: SidebarProps) {
             <span>Ajustes</span>
           </Link>
           <Link
-            href="#"
+            href="/help"
             className={`flex items-center gap-2 px-2 py-2 rounded text-sm ${
               active === "ayuda"
                 ? darkMode
