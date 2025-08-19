@@ -29,24 +29,39 @@ const beachImages = [
 
 export default function TopBeaches() {
   return (
-    <section className="py-10 bg-gray-100" role="main" aria-label="Carrusel de imágenes de playas del Río de la Plata">
+    <section
+      className="py-10 bg-gray-100"
+      role="region"
+      aria-label="Galería de imágenes de playas del Río de la Plata"
+    >
       <h2 className="text-center text-xl font-semibold mb-6">
         Conocé cuáles son las mejores playas del Río de la Plata
       </h2>
-      <div className="flex justify-center gap-3 overflow-x-auto px-4">
+
+      <div
+        className="flex flex-col sm:flex-row sm:justify-center gap-3 overflow-x-auto px-4"
+        role="list"
+      >
         {beachImages.map((image, idx) => (
-          <div key={idx} className="relative min-w-[300px] h-[200px] rounded shadow-sm" tabIndex={0}>
-            <Image
+          <div
+            key={idx}
+            className="relative min-w-[300px] h-[200px] rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+           <Image
               src={image.src}
               alt={image.alt}
               fill
               className="object-cover rounded"
               sizes="(max-width: 768px) 100vw, 300px"
+              tabIndex={0}
             />
           </div>
         ))}
       </div>
-      <p className="text-center text-sm mt-4 text-gray-600">Tu opinión también cuenta</p>
+
+      <p className="text-center text-sm mt-4 text-gray-600">
+        Tu opinión también cuenta
+      </p>
     </section>
   )
 }

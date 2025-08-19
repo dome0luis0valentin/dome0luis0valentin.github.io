@@ -26,7 +26,7 @@ export default function Testimonials() {
   ]
 
   return (
-    <section className="py-12 px-4 bg-gray-100" role="main" aria-label="testimonios">
+    <section className="py-12 px-4 bg-gray-100" role="main" aria-label="testimonios" tabIndex={0}>
       <h2 className="text-center text-xl font-semibold mb-8">Algunas opiniones</h2>
       <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {testimonios.map((t, idx) => (
@@ -34,7 +34,7 @@ export default function Testimonials() {
             key={idx}
             className="bg-white p-6 rounded-lg shadow text-sm border border-gray-200"
           >
-            <div className="flex items-center gap-3 mb-3">
+            <div className="flex items-center gap-3 mb-3" tabIndex={0}>
               <Image
                 src={t.foto}
                 alt={t.nombre}
