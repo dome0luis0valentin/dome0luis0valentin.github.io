@@ -47,7 +47,7 @@ export default function HelpPage() {
               width={800}
               height={400}
               tabIndex={0}
-              className="rounded"
+              className="rounded mx-auto block"
             />
           </li>
         ))}

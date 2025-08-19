@@ -41,11 +41,13 @@ export default function TopBeaches() {
       <div
         className="flex flex-col sm:flex-row sm:justify-center gap-3 overflow-x-auto px-4"
         role="list"
+        tabIndex={0}
       >
         {beachImages.map((image, idx) => (
           <div
             key={idx}
             className="relative min-w-[300px] h-[200px] rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            tabIndex={0}
           >
            <Image
               src={image.src}
@@ -59,7 +61,7 @@ export default function TopBeaches() {
         ))}
       </div>
 
-      <p className="text-center text-sm mt-4 text-gray-600">
+      <p className="text-center text-sm mt-4 text-gray-600" >
         Tu opinión también cuenta
       </p>
     </section>
