@@ -33,6 +33,7 @@ export default function Testimonials() {
           <div
             key={idx}
             className="bg-white p-6 rounded-lg shadow text-sm border border-gray-200"
+            tabIndex={0}
           >
             <div className="flex items-center gap-3 mb-3" tabIndex={0}>
               <Image
@@ -41,6 +42,7 @@ export default function Testimonials() {
                 width={40}
                 height={40}
                 className="w-10 h-10 rounded-full"
+                tabIndex={0}
               />
               <div>
                 <div className="flex items-center gap-1">

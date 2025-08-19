@@ -22,6 +22,7 @@ export default function HeroSection() {
             width={600} // puedes ajustar
             height={400} // puedes ajustar
             className="rounded-lg shadow-md object-cover"
+            tabIndex={0}
           />
         </div>
       </div>
