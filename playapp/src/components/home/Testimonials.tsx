@@ -45,7 +45,7 @@ export default function Testimonials() {
                 tabIndex={0}
               />
               <div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1" tabIndex={0}>
                   <span className="font-semibold text-gray-900">{t.nombre}</span>
                   <Image
                     src="https://img.icons8.com/ios-filled/16/777777/verified-account--v1.png"
@@ -57,8 +57,8 @@ export default function Testimonials() {
                 <span className="text-gray-500 text-xs">{t.username}</span>
               </div>
             </div>
-            <p className="text-gray-800 mb-3">{t.mensaje}</p>
-            <div className="text-gray-500 text-xs">{t.hora}</div>
+            <p className="text-gray-800 mb-3" tabIndex={0}>{t.mensaje}</p>
+            <div className="text-gray-500 text-xs" tabIndex={0}>{t.hora}</div>
           </div>
         ))}
       </div>
