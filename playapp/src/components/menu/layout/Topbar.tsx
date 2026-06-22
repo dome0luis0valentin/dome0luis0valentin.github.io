@@ -30,9 +30,14 @@ export default function Topbar({
         >
           ☰
         </button>
+<<<<<<< HEAD
 
         {/* Mostrar saludo solo en pantallas un poco más grandes */}
         <h1 className="text-lg font-semibold hidden sm:block">
+=======
+        {/* Mostrar saludo solo en pantallas un poco más grandes */}
+        <h1 className="text-lg font-semibold hidden xs:block">
+>>>>>>> 3575a4deabde0cf1f7adc329b160b5b8d347fff0
           Bienvenido John
         </h1>
       </div>

@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import HelpButton from "../help/HelpButton";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -40,14 +41,7 @@ export default function Header() {
           ☰
         </button>
         <nav className="option-header space-x-6 hidden md:flex">
-          <a
-            href="#"
-            className="text-white hover:text-white focus:outline-none 
-    px-4 py-2 flex justify-center items-center border border-transparent 
-    hover:border-white focus:border-white rounded transition"
-          >
-            Ayuda
-          </a>
+          <HelpButton />
           <a
             href="#"
             className="text-white hover:text-white focus:outline-none 
