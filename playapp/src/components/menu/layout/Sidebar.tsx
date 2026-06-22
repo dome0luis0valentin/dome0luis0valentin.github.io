@@ -35,7 +35,7 @@ export default function Sidebar({ isOpen, onClose, active }: SidebarProps) {
     [@media(max-width:222px)]:p-2
     h-full z-40
     transition-transform duration-300 ease-in-out
-    ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+    ${isOpen ? "translate-x-0 md:translate-x-0 md:block" : "-translate-x-full md:hidden"}
   `}
       >
         <div className="flex flex-col flex-grow overflow-auto">
@@ -126,7 +126,7 @@ export default function Sidebar({ isOpen, onClose, active }: SidebarProps) {
             <span>Ajustes</span>
           </Link>
           <Link
-            href="#"
+            href="/menu/ayuda"
             className={`flex items-center gap-2 px-2 py-2 rounded text-sm ${
               active === "ayuda"
                 ? darkMode
@@ -141,7 +141,7 @@ export default function Sidebar({ isOpen, onClose, active }: SidebarProps) {
             <span>Ayuda</span>
           </Link>
           <Link
-            href="#"
+            href="/menu/sobre-nosotros"
             className={`flex items-center gap-2 px-2 py-2 rounded text-sm ${
               active === "sobre-nosotros"
                 ? darkMode

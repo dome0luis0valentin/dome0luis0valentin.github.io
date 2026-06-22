@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTheme } from "@/app/context/ThemeContext";
 import { useBeaches } from "@/app/context/BeachesContext";
 
@@ -22,10 +22,30 @@ export default function DropdownFilter() {
     selectedFilters.length ? selectedFilters : options.map((_, i) => i)
   );
   const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setSelectedFilters(selectedOptions);
   }, [selectedOptions, setSelectedFilters]);
+
+  useEffect(() => {
+    function handleOutside(e: MouseEvent | TouchEvent) {
+      if (!containerRef.current) return;
+      const target = e.target as Node;
+      if (!containerRef.current.contains(target)) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleOutside);
+      document.addEventListener("touchstart", handleOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("touchstart", handleOutside);
+    };
+  }, [isOpen]);
 
   const toggleOption = (index: number) => {
     setSelectedOptions((prev) => {
@@ -38,27 +58,27 @@ export default function DropdownFilter() {
   };
 
   return (
-    <div className="relative z-50 flex flex-col">
-      {/* Contenedor principal con ancho fijo y sin expansión */}
+    <div ref={containerRef} className="relative z-50 flex flex-col">
+      {/* Contenedor principal sin centrar para poder alinear a la derecha en móvil */}
       <div className={`
-        w-full
+        w-auto
         sm:w-[220px] md:w-[280px] lg:w-[320px]
         max-w-full
-        mx-auto
         ${isOpen ? "h-auto" : "h-[40px]"}
       `}>
         {/* Botón principal */}
         <button
           onClick={() => setIsOpen((prev) => !prev)}
           className={`
-            w-full px-3 py-2 rounded-lg flex items-center justify-between
-            text-sm sm:text-base h-[40px]
-            ${
-              darkMode
-                ? "bg-black bg-opacity-80 text-white hover:bg-opacity-90"
-                : "bg-gray-200 text-black hover:bg-gray-300"
-            }
-          `}
+              w-full px-3 py-2 rounded-lg flex items-center justify-between
+              text-sm sm:text-base h-[40px]
+              border shadow-sm
+              ${
+                darkMode
+                  ? "bg-gray-800 text-white border-gray-700"
+                  : "bg-white text-black border-gray-200"
+              }
+            `}
         >
           ⚙️ PUNTUAR
           <span className="ml-2">{isOpen ? "▲" : "▼"}</span>
@@ -67,15 +87,15 @@ export default function DropdownFilter() {
         {/* Opciones - posicionamiento absoluto fuera del flujo */}
         {isOpen && (
           <div className={`
-            absolute top-[45px] left-0 right-0
+            absolute top-[45px] right-0 left-auto md:left-0 md:right-0
             mt-1 rounded-lg p-2 space-y-1
-            text-xs sm:text-sm // Cambié aquí para reducir el tamaño de la fuente en dispositivos pequeños
+            text-xs sm:text-sm
             max-h-[50vh] overflow-y-auto
-            w-full
+            w-auto md:w-full min-w-[160px]
             ${
               darkMode
-                ? "bg-black bg-opacity-80 text-white"
-                : "bg-white text-black shadow-md"
+                ? "bg-gray-800 text-white shadow-lg"
+                : "bg-white text-black shadow-lg"
             }
           `}>
             {options.map((label, i) => {
@@ -90,11 +110,11 @@ export default function DropdownFilter() {
                     ${
                       isSelected
                         ? darkMode
-                          ? "bg-gray-900 text-white" // Asegura que el texto sea blanco en modo oscuro
-                          : "bg-gray-300 text-black" // Asegura que el texto sea negro en modo claro
+                          ? "bg-gray-700 text-white"
+                          : "bg-gray-100 text-black"
                         : darkMode 
-                        ? "bg-gray-700 text-white"
-                        : "bg-transparent text-black" // Texto negro por defecto
+                        ? "bg-transparent text-white"
+                        : "bg-transparent text-black"
                     }
                     ${darkMode ? "hover:bg-gray-800" : "hover:bg-gray-200"}
                   `}

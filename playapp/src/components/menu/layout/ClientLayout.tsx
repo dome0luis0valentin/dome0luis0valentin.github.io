@@ -30,7 +30,7 @@ export default function ClientLayout({
     if (pathname.startsWith("/menu/ajustes")) return "ajustes";
     if (pathname.startsWith("/menu/mensajes")) return "mensajes";
     if (pathname.startsWith("/menu/ayuda")) return "ayuda";
-    if (pathname.startsWith("/menu/sobre-nosotros")) return "ayuda";
+    if (pathname.startsWith("/menu/sobre-nosotros")) return "sobre-nosotros";
     return "";
   };
 

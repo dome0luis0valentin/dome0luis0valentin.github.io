@@ -24,9 +24,7 @@ export default function Topbar({
       <div className="flex items-center gap-2 flex-shrink-0">
         <button
           id="menuToggle"
-          className={`text-2xl ${
-            darkMode ? "text-white" : "text-black"
-          } sm:hidden`}
+          className={`text-2xl ${darkMode ? "text-white" : "text-black"}`}
           onClick={onToggleSidebar}
           aria-label="Toggle menu"
         >
