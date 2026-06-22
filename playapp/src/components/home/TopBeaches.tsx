@@ -30,11 +30,11 @@ const beachImages = [
 export default function TopBeaches() {
   return (
     <section
-      className="py-10 bg-gray-100"
+      className="py-10"
       role="region"
       aria-label="Galería de imágenes de playas del Río de la Plata"
     >
-      <h2 className="text-center text-xl font-semibold mb-6">
+      <h2 className="text-center text-xl font-semibold mb-6 text-gray-900 dark:text-gray-100">
         Conocé cuáles son las mejores playas del Río de la Plata
       </h2>
 
@@ -61,7 +61,7 @@ export default function TopBeaches() {
         ))}
       </div>
 
-      <p className="text-center text-sm mt-4 text-gray-600" >
+      <p className="text-center text-sm mt-4 text-gray-700 dark:text-gray-300">
         Tu opinión también cuenta
       </p>
     </section>

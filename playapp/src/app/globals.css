@@ -34,4 +34,26 @@ body {
   border: none !important;
 }
 
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded font-semibold transition-all duration-150 inline-flex items-center justify-center;
+  }
+
+  .btn-primary {
+    @apply bg-indigo-600 text-white hover:bg-indigo-700;
+  }
+
+  .btn-ghost {
+    @apply bg-white text-gray-800 border border-gray-200 hover:bg-gray-50;
+  }
+
+  .dark .btn-ghost {
+    @apply bg-gray-800 text-white border-gray-700 hover:bg-gray-700;
+  }
+
+  .btn:focus {
+    @apply ring-2 ring-indigo-300;
+  }
+}
+
 

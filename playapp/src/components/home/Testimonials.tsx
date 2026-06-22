@@ -26,8 +26,8 @@ export default function Testimonials() {
   ]
 
   return (
-    <section className="py-12 px-4 bg-gray-100" role="main" aria-label="testimonios" tabIndex={0}>
-      <h2 className="text-center text-xl font-semibold mb-8">Algunas opiniones</h2>
+     <section className="py-12 px-4" role="main" aria-label="testimonios" tabIndex={0}>
+      <h2 className="text-center text-xl font-semibold mb-8 text-gray-900 dark:text-gray-100">Algunas opiniones</h2>
       <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {testimonios.map((t, idx) => (
           <div
@@ -46,7 +46,7 @@ export default function Testimonials() {
               />
               <div>
                 <div className="flex items-center gap-1" tabIndex={0}>
-                  <span className="font-semibold text-gray-900">{t.nombre}</span>
+                  <span className="font-semibold text-black dark:text-black-100">{t.nombre}</span>
                   <Image
                     src="https://img.icons8.com/ios-filled/16/777777/verified-account--v1.png"
                     alt="Verificado"
@@ -54,11 +54,11 @@ export default function Testimonials() {
                     height={16}
                   />
                 </div>
-                <span className="text-gray-500 text-xs">{t.username}</span>
+                <span className="text-gray-800 dark:text-gray-400 text-xs">{t.username}</span>
               </div>
             </div>
-            <p className="text-gray-800 mb-3" tabIndex={0}>{t.mensaje}</p>
-            <div className="text-gray-500 text-xs" tabIndex={0}>{t.hora}</div>
+            <p className="text-gray-800 dark:text-gray-800 mb-3" tabIndex={0}>{t.mensaje}</p>
+            <div className="text-gray-500 dark:text-gray-400 text-xs" tabIndex={0}>{t.hora}</div>
           </div>
         ))}
       </div>

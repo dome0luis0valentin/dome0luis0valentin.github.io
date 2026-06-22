@@ -2,13 +2,14 @@
 
 "use client";
 import Image from "next/image";
-
 import { useState } from "react";
+import { useTheme } from "@/app/context/ThemeContext";
 import { useRouter } from "next/navigation";
 import HelpButton from "../help/HelpButton";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const { darkMode } = useTheme();
 
   const router = useRouter();
 
@@ -25,7 +26,7 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-gray-900 shadow-md">
+    <header className={`${darkMode ? "bg-gray-900" : "bg-white"} shadow-md`}>
       <div className="option-header-container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="option-header items-center space-x-2 flex">
           <Image
@@ -37,27 +38,25 @@ export default function Header() {
           />
           <span className="font-bold text-white text-xl">Playapp</span>
         </div>
-        <button onClick={() => setOpen(!open)} className="text-white md:hidden">
+        <button onClick={() => setOpen(!open)} className={`${darkMode ? "text-white" : "text-gray-800"} md:hidden`}>
           ☰
         </button>
         <nav className="option-header space-x-6 hidden md:flex">
           <HelpButton />
           <a
             href="#"
-            className="text-white hover:text-white focus:outline-none 
-    px-4 py-2 flex justify-center items-center border border-transparent 
-    hover:border-white focus:border-white rounded transition"
+            className={`${darkMode ? "text-white hover:text-white" : "text-gray-800 hover:text-gray-900"} focus:outline-none px-4 py-2 flex justify-center items-center rounded transition`}
           >
             Conocé más
           </a>
           <button
-            className="border px-6 py-2 rounded bg-white hover:text-gray-500"
+            className={`btn btn-primary ${darkMode ? "bg-white text-black hover:bg-gray-100" : ""}`}
             onClick={goToRegister}
           >
-            Registrame
+            Registrarme
           </button>
           <button
-            className="border px-6 py-2 rounded bg-white hover:text-gray-500"
+            className={`btn ${darkMode ? "bg-white text-black hover:bg-gray-100" : "btn-ghost"}`}
             onClick={scrollToLogin}
           >
             Logearme
@@ -66,29 +65,27 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="md:hidden bg-gray-800 px-4 pt-2 pb-4 space-y-2 text-white">
+        <nav className={`${darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-800"} md:hidden px-4 pt-2 pb-4 space-y-2`}>
           <a
             href="#"
-            className="block text-white px-4 py-2 text-center rounded border border-transparent 
-    hover:border-white focus:border-white focus:outline-none transition"
+            className={`${darkMode ? "text-white" : "text-gray-800"} block px-4 py-2 text-center rounded transition`}
           >
             Ayuda
           </a>
           <a
             href="#"
-            className="block text-white px-4 py-2 text-center rounded border border-transparent 
-    hover:border-white focus:border-white focus:outline-none transition"
+            className={`${darkMode ? "text-white" : "text-gray-800"} block px-4 py-2 text-center rounded transition`}
           >
             Conocé más
           </a>
           <button
-            className="w-full border px-4 py-2 rounded bg-white text-black text-gray-800 hover:bg-gray-100"
+            className={`btn btn-primary ${darkMode ? "w-full bg-white text-black hover:bg-gray-100" : "w-full"}`}
             onClick={scrollToLogin}
           >
-            Registrame
+            Registrarme
           </button>
           <button
-            className="w-full border px-4 py-2 rounded bg-white text-black text-gray-800 hover:bg-gray-100"
+            className={`btn ${darkMode ? "w-full bg-white text-black hover:bg-gray-100" : "btn-ghost w-full"}`}
             onClick={scrollToLogin}
           >
             Logearme

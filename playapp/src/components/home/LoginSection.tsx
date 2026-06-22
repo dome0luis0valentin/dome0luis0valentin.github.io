@@ -59,7 +59,7 @@ export default function LoginSection() {
               <div className="py-2">
                 <button
                   type="submit"
-                  className={`${darkMode ? "bg-indigo-600 hover:bg-indigo-700" : "bg-gray-800 hover:bg-gray-900"} text-white w-full px-6 py-2 rounded`}
+                  className={`btn btn-primary w-full ${darkMode ? "" : ""}`}
                 >
                   Ingresar
                 </button>
@@ -71,7 +71,7 @@ export default function LoginSection() {
             </p>
             <div className="py-2">
               <button
-                className={`${darkMode ? "bg-indigo-500 hover:bg-indigo-600" : "bg-gray-800 hover:bg-gray-900"} text-white w-full px-6 py-2 rounded`}
+                className={`btn btn-primary w-full`}
                 onClick={() => router.push("/registrar")}
               >
                 Registrarme

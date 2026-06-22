@@ -20,13 +20,15 @@ export default function Home() {
       <Head>
         <link rel="icon" href="/favicon.ico"></link>
       </Head>
-      <Header />
-      <Hero />
-      <TopBeaches />
-      <Testimonials />
-      <Features />
-      <LoginSection />
-      <Footer />
+      <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-gray-100">
+        <Header />
+        <Hero />
+        <TopBeaches />
+        <Testimonials />
+        <Features />
+        <LoginSection />
+        <Footer />
+      </div>
     </>
   );
 }
