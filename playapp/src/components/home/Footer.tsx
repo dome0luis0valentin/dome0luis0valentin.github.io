@@ -1,8 +1,11 @@
 import Image from "next/image"
+import { useTheme } from "@/app/context/ThemeContext";
 
 export default function Footer() {
+  const { darkMode } = useTheme();
+
   return (
-    <footer className="bg-white py-6 border-t-0">
+    <footer className={`${darkMode ? "bg-gray-900 text-gray-200" : "bg-white text-black"} py-6 border-t-0`}>
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center px-4">
         <div className="flex space-x-4 items-center">
           <span className="text-sm font-medium">Follow us</span>
@@ -47,16 +50,16 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Tu mail"
-                className="border border-gray-300 px-2 py-1 rounded-l text-sm"
+                className={`px-2 py-1 rounded-l text-sm border ${darkMode ? "border-gray-600 bg-gray-700 text-white placeholder-gray-300" : "border-gray-300 bg-white text-black placeholder-gray-600"}`}
               />
-              <button className="bg-gray-800 text-white px-3 rounded-r text-sm">
+              <button className={`${darkMode ? "bg-indigo-600 hover:bg-indigo-700" : "bg-gray-800 hover:bg-gray-900"} text-white px-3 rounded-r text-sm`}>
                 SUSCRIBIRME
               </button>
             </div>
           </label>
         </div>
       </div>
-      <p className="text-center text-gray-800 text-xs mt-4">
+      <p className={`text-center ${darkMode ? "text-gray-400" : "text-gray-800"} text-xs mt-4`}>
         © 2025 Playapp. Todos los derechos reservados.
       </p>
     </footer>

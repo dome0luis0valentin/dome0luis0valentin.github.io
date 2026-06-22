@@ -4,9 +4,11 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useTheme } from "@/app/context/ThemeContext";
 
 export default function LoginSection() {
   const router = useRouter();
+  const { darkMode } = useTheme();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,10 +18,10 @@ export default function LoginSection() {
 
   return (
     
-    // Fondo gris para toda la sección
-    <div className="bg-gray-100 py-12 flex justify-center">
-      {/* Formulario con fondo blanco y sombra */}
-      <div className="rounded-lg shadow-md max-w-md bg-white w-full mx-4">
+    // Fondo para toda la sección
+    <div className={`${darkMode ? "bg-gray-900" : "bg-gray-100"} py-12 flex justify-center`}>
+      {/* Formulario con fondo y sombra */}
+      <div className={`rounded-lg shadow-md max-w-md w-full mx-4 ${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"}`}>
         <section id="login-section">
           <div id="log-section" className="px-4 py-6">
             <h2 className="text-center text-xl font-semibold mb-6">INGRESAR</h2>
@@ -31,7 +33,7 @@ export default function LoginSection() {
                   type="text"
                   placeholder="John Doe"
                   aria-label="Nombre de usuario"
-                  className="w-full border border-gray-300 p-2 rounded mt-1"
+                  className={`w-full p-2 rounded mt-1 border ${darkMode ? "border-gray-600 bg-gray-700 text-white placeholder-gray-300" : "border-gray-300 bg-white text-black placeholder-gray-600"}`}
                   required
                 />
               </label>
@@ -41,7 +43,7 @@ export default function LoginSection() {
                   type="email"
                   placeholder="ejemplo@gmail.com"
                   aria-label="Email del usuario"
-                  className="w-full border border-gray-300 p-2 rounded mt-1"
+                  className={`w-full p-2 rounded mt-1 border ${darkMode ? "border-gray-600 bg-gray-700 text-white placeholder-gray-300" : "border-gray-300 bg-white text-black placeholder-gray-600"}`}
                   required
                 />
               </label>
@@ -50,14 +52,14 @@ export default function LoginSection() {
                 <input
                   type="password"
                   placeholder="123456"
-                  className="w-full border border-gray-300 p-2 rounded mt-1"
+                  className={`w-full p-2 rounded mt-1 border ${darkMode ? "border-gray-600 bg-gray-700 text-white placeholder-gray-300" : "border-gray-300 bg-white text-black placeholder-gray-600"}`}
                   required
                 />
               </label>
               <div className="py-2">
                 <button
                   type="submit"
-                  className="bg-gray-800 text-white w-full px-6 py-2 rounded"
+                  className={`${darkMode ? "bg-indigo-600 hover:bg-indigo-700" : "bg-gray-800 hover:bg-gray-900"} text-white w-full px-6 py-2 rounded`}
                 >
                   Ingresar
                 </button>
@@ -69,7 +71,7 @@ export default function LoginSection() {
             </p>
             <div className="py-2">
               <button
-                className="bg-gray-800 text-white w-full px-6 py-2 rounded"
+                className={`${darkMode ? "bg-indigo-500 hover:bg-indigo-600" : "bg-gray-800 hover:bg-gray-900"} text-white w-full px-6 py-2 rounded`}
                 onClick={() => router.push("/registrar")}
               >
                 Registrarme

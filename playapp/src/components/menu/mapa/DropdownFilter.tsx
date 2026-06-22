@@ -11,11 +11,11 @@ export default function DropdownFilter() {
   const { selectedFilters, setSelectedFilters } = useBeaches();
 
   const options = [
-    "🏖️ ARENA",
-    "🌊 AGUA",
-    "🧹 LIMPIEZA",
-    "🧘‍♀️ TRANQUILIDAD",
-    "🎡 ATRACCIONES",
+    "Arena",
+    "Agua",
+    "Limpieza",
+    "Tranquilidad",
+    "Atracciones",
   ];
 
   const [selectedOptions, setSelectedOptions] = useState<number[]>(
@@ -85,7 +85,7 @@ export default function DropdownFilter() {
               }
             `}
         >
-          ⚙️ PUNTUAR
+          <span className="font-medium">Puntuar</span>
           <span className="ml-2">{isOpen ? "▲" : "▼"}</span>
         </button>
 
@@ -109,23 +109,16 @@ export default function DropdownFilter() {
                 <button
                   key={i}
                   onClick={() => toggleOption(i)}
-                  className={`
-                    w-full flex items-center gap-2 px-2 py-1 rounded // Ajusté el padding
-                    whitespace-normal break-words text-left
-                    ${
-                      isSelected
-                        ? darkMode
-                          ? "bg-gray-700 text-white"
-                          : "bg-gray-100 text-black"
-                        : darkMode 
-                        ? "bg-transparent text-white"
-                        : "bg-transparent text-black"
-                    }
-                    ${darkMode ? "hover:bg-gray-800" : "hover:bg-gray-200"}
-                  `}
+                  className={`w-full flex items-center px-2 py-2 rounded text-left ${darkMode ? "hover:bg-gray-700" : "hover:bg-gray-100"}`}
                 >
-                  <span className="flex-1">{label}</span>
-                  {isSelected && <span className="ml-auto">✓</span>}
+                  <span className={`w-4 h-4 inline-flex items-center justify-center mr-3 rounded-sm border ${isSelected ? "bg-indigo-600 border-indigo-600" : darkMode ? "border-gray-600" : "border-gray-300"}`}>
+                    {isSelected && (
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17l-5-5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </span>
+                  <span className={`flex-1 ${isSelected ? (darkMode ? "text-white" : "text-black") : (darkMode ? "text-gray-200" : "text-gray-800")}`}>{label}</span>
                 </button>
               );
             })}
