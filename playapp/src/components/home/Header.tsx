@@ -11,6 +11,8 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const { darkMode } = useTheme();
 
+  const buttonBase = "px-4 py-2 rounded-md transition flex items-center justify-center border border-transparent hover:border-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer";
+
   const router = useRouter();
 
   const goToRegister = () => {
@@ -32,31 +34,31 @@ export default function Header() {
           <Image
             src="https://img.icons8.com/ios-filled/50/ffffff/beach.png"
             alt="Logo"
-            width={24} // ancho en píxeles
-            height={24} // alto en píxeles
-            className="h-6" // o podés usar aquí para styling adicional
+            width={24}
+            height={24}
+            className="h-6"
           />
           <span className="font-bold text-white text-xl">Playapp</span>
         </div>
-        <button onClick={() => setOpen(!open)} className={`${darkMode ? "text-white" : "text-gray-800"} md:hidden`}>
+        <button onClick={() => setOpen(!open)} className={`${darkMode ? "text-white" : "text-gray-800"} md:hidden cursor-pointer`}>
           ☰
         </button>
         <nav className="option-header space-x-6 hidden md:flex">
-          <HelpButton />
+          <HelpButton className={`${buttonBase} ${darkMode ? "text-white" : "text-gray-800"}`} />
           <a
             href="#"
-            className={`${darkMode ? "text-white hover:text-white" : "text-gray-800 hover:text-gray-900"} focus:outline-none px-4 py-2 flex justify-center items-center rounded transition`}
+            className={`${buttonBase} ${darkMode ? "text-white hover:text-white" : "text-gray-800 hover:text-gray-900"}`}
           >
             Conocé más
           </a>
           <button
-            className={`btn btn-primary ${darkMode ? "bg-white text-black hover:bg-gray-100" : ""}`}
+            className={`btn btn-primary ${buttonBase} ${darkMode ? "bg-white text-black hover:bg-gray-100" : ""}`}
             onClick={goToRegister}
           >
             Registrarme
           </button>
           <button
-            className={`btn ${darkMode ? "bg-white text-black hover:bg-gray-100" : "btn-ghost"}`}
+            className={`btn ${buttonBase} ${darkMode ? "bg-white text-black hover:bg-gray-100" : "btn-ghost"}`}
             onClick={scrollToLogin}
           >
             Logearme
@@ -66,26 +68,21 @@ export default function Header() {
 
       {open && (
         <nav className={`${darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-800"} md:hidden px-4 pt-2 pb-4 space-y-2`}>
+          <HelpButton className={`${buttonBase} ${darkMode ? "text-white block w-full text-center" : "text-gray-800 block w-full text-center"}`} />
           <a
             href="#"
-            className={`${darkMode ? "text-white" : "text-gray-800"} block px-4 py-2 text-center rounded transition`}
-          >
-            Ayuda
-          </a>
-          <a
-            href="#"
-            className={`${darkMode ? "text-white" : "text-gray-800"} block px-4 py-2 text-center rounded transition`}
+            className={`${buttonBase} ${darkMode ? "text-white block w-full text-center" : "text-gray-800 block w-full text-center"}`}
           >
             Conocé más
           </a>
           <button
-            className={`btn btn-primary ${darkMode ? "w-full bg-white text-black hover:bg-gray-100" : "w-full"}`}
+            className={`btn btn-primary ${buttonBase} ${darkMode ? "w-full bg-white text-black hover:bg-gray-100" : "w-full"}`}
             onClick={scrollToLogin}
           >
             Registrarme
           </button>
           <button
-            className={`btn ${darkMode ? "w-full bg-white text-black hover:bg-gray-100" : "btn-ghost w-full"}`}
+            className={`btn ${buttonBase} ${darkMode ? "w-full bg-white text-black hover:bg-gray-100" : "btn-ghost w-full"}`}
             onClick={scrollToLogin}
           >
             Logearme

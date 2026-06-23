@@ -14,15 +14,15 @@ const beachImages = [
     alt: "Camino al lado del río, con árboles a un costado, que dan sombra",
   },
   {
-    src: "https://www.cronica.com.ar/img/2023/01/07/punta_indio-argentinaturismo_com_ar_crop1673108242203.jpg?__scale=w:1200,h:900,t:2,fpx:821,fpy:575",
+    src: "https://www.baenegocios.com/tools/image.php?id=175120&p=/files/image/175/175120/69434cb953c66.jpg&w=532&h=355&s=13a25568a4aaf093fa64566e54564f4e",
     alt: "Árbol a la orilla de una playa",
   },
   {
-    src: "https://www.baenegocios.com/img/2023/10/26/buenosairesplaya-escapada.jpg?__scale=c:transparent,w:745,h:419,t:3",
+    src: "https://offloadmedia.feverup.com/bairessecreta.com/wp-content/uploads/2025/12/26123347/playa-berisso-buenos-aires-1.jpg",
     alt: "Río a la izquierda, separado por una baranda de seguridad, un camino y tiendas",
   },
   {
-    src: "https://conocer365.uy/wp-content/uploads/2019/01/kiy%C3%BA-barranca-intensify.jpg",
+    src: "https://media.0221.com.ar/adjuntos/357/migration/0221/012023/1673102485126.jpg",
     alt: "Imagén de la arena de la playa",
   },
 ]
@@ -52,7 +52,7 @@ export default function TopBeaches() {
            <Image
               src={image.src}
               alt={image.alt}
-              fill
+              fill unoptimized
               className="object-cover rounded"
               sizes="(max-width: 768px) 100vw, 300px"
               tabIndex={0}

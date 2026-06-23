@@ -14,7 +14,11 @@ module.exports = {
       "conocer365.uy",
       "img.icons8.com",
       "randomuser.me",
-      "infogei.com"
+      "infogei.com",
+      "media.ambito.com",
+      "offloadmedia.feverup.com",
+      "media.0221.com.ar",
+      "baenegocios.com"
     ],
   },
 }

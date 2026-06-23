@@ -16,10 +16,11 @@ export default function HeroSection() {
         </div>
         <div className="flex-1">
           <Image
-            src="https://infogei.com/uploads/noticias/2/2023/01/20230107182009_rio.jpg"
+            src="https://media.ambito.com/p/cae9d4e2e89e8b4510c1485d1c201051/adjuntos/239/imagenes/040/349/0040349239/1200x675/smart/punta-indio_playajpg.jpg"
             alt="Playa destacada"
-            width={600} // puedes ajustar
-            height={400} // puedes ajustar
+            width={900} // puedes ajustar
+            height={600} // puedes ajustar
+            unoptimized
             className="rounded-lg shadow-md object-cover"
             tabIndex={0}
           />
