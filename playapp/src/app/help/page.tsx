@@ -31,16 +31,16 @@ const steps = [
 export default function HelpPage() {
   return (
     <main
-      className="p-6 bg-gray-50"
+      className="p-6 bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100"
       role="main"
       aria-label="Instrucciones para utilizar la página"
     >
       <h1 className="text-2xl font-bold mb-4" tabIndex={0}>Cómo usar esta página</h1>
 
-      <ol className="space-y-8" role="list">
+      <ol className="space-y-6" role="list">
         {steps.map((step, index) => (
-          <li key={index} role="listitem" className="bg-white p-4 rounded shadow-sm">
-            <p className="mb-3" tabIndex={0}>{index + 1}. {step.text}</p>
+          <li key={index} role="listitem" className="bg-gray-50 dark:bg-gray-700 p-3 rounded shadow-sm border border-gray-100 dark:border-gray-600">
+            <p className="mb-2 text-sm" tabIndex={0}>{index + 1}. {step.text}</p>
             <Image
               src={step.img}
               alt={step.alt}

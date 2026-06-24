@@ -71,15 +71,15 @@ export default function BeachStatsPanel({
 
   return (
     <aside
-      className={`rounded-t-3xl shadow-xl w-full max-w-[700px] h-[400px] mx-auto max-h-screen flex flex-col
+      className={`rounded-t-3xl shadow-xl w-full max-w-none h-[480px] mx-0 max-h-screen flex flex-col
     ${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"}`}
     >
       {/* Header */}
-      <div className="flex justify-between items-center p-4 sticky top-0 z-20 bg-inherit">
-        <h2 className="text-xl font-bold">{beach.name}</h2>
+      <div className="flex justify-between items-center p-3 sticky top-0 z-20 bg-inherit">
+        <h2 className="text-lg font-bold truncate">{beach.name}</h2>
         <button
           onClick={onClose}
-          className={`text-2xl font-semibold hover:opacity-70 ${
+          className={`text-xl font-semibold hover:opacity-70 ${
             darkMode ? "text-white" : "text-black"
           }`}
           aria-label="Cerrar panel"
@@ -89,11 +89,11 @@ export default function BeachStatsPanel({
       </div>
 
       {/* Tabs */}
-      {opiniones.length > 0 && (
-        <div className="flex space-x-2 sticky top-[56px] z-10 bg-inherit px-4 pb-2">
+        {opiniones.length > 0 && (
+        <div className="flex space-x-2 sticky top-[56px] z-10 bg-inherit px-3 pb-1">
           <button
             onClick={() => setActiveTab("scores")}
-            className={`flex-1 py-2 rounded-t-lg font-semibold text-center ${
+            className={`flex-1 py-1.5 rounded-t-lg font-semibold text-center text-sm ${
               activeTab === "scores"
                 ? darkMode
                   ? "bg-gray-700 text-white"
@@ -107,7 +107,7 @@ export default function BeachStatsPanel({
           </button>
           <button
             onClick={() => setActiveTab("opinions")}
-            className={`flex-1 py-2 rounded-t-lg font-semibold text-center ${
+            className={`flex-1 py-1.5 rounded-t-lg font-semibold text-center text-sm ${
               activeTab === "opinions"
                 ? darkMode
                   ? "bg-gray-700 text-white"
@@ -123,10 +123,10 @@ export default function BeachStatsPanel({
       )}
 
       {/* Scrollable Content */}
-      <div className="overflow-y-auto flex-1 px-4 pb-4 pt-[50px]">
+      <div className="overflow-y-auto flex-1 px-3 pb-3 pt-[44px]">
         {activeTab === "scores" && (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
               <StatItem
                 {...getStatProps("Calidad de Arena", "🏖️", scores.arena)}
               />
@@ -146,19 +146,19 @@ export default function BeachStatsPanel({
             </div>
 
             <div
-              className={`flex items-center justify-between px-4 py-2 rounded-lg mb-4 ${scoreColor}`}
+              className={`flex items-center justify-between px-2 py-1 rounded-md mb-3 ${scoreColor}`}
             >
-              <span className={`text-2xl ${textColor}`}>
+              <span className={`text-lg ${textColor}`}>
                 {getEmojiFinalScore(score)}
               </span>
-              <span className={`font-bold ${textColor}`}>
+              <span className={`font-bold ${textColor} text-sm`}>
                 Puntuación: {scores.finalScore.toFixed(2)}/10
               </span>
             </div>
 
             <button
               onClick={handleOpinar}
-              className={`w-full font-semibold py-2 rounded-lg shadow transition ${
+              className={`w-full font-semibold py-1.5 rounded-md shadow-sm text-sm transition ${
                 darkMode
                   ? "bg-white text-gray-900 hover:bg-gray-200"
                   : "bg-black text-white hover:bg-gray-800"
@@ -171,10 +171,10 @@ export default function BeachStatsPanel({
 
         {activeTab === "opinions" && (
           <div>
-            <h3 className="text-lg font-semibold mb-2">
+            <h3 className="text-sm font-semibold mb-2">
               Opiniones de usuarios
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {opiniones.map((op, idx) => {
                 const user = getUserById(op.userId);
                 const ratingItems: (keyof Rating)[] = [
@@ -189,7 +189,7 @@ export default function BeachStatsPanel({
                 return (
                   <div
                     key={idx}
-                    className={`rounded-lg shadow px-4 py-3 flex flex-col gap-2 ${
+                    className={`rounded-lg shadow px-3 py-2 flex flex-col gap-2 ${
                       darkMode ? "bg-gray-700" : "bg-white"
                     }`}
                   >
@@ -226,7 +226,7 @@ export default function BeachStatsPanel({
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-2">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-2">
                       {ratingItems.map((item) => {
                         const value = op.rating[item];
                         const nivel =
@@ -247,8 +247,8 @@ export default function BeachStatsPanel({
                             <Image
                               src={iconUrl}
                               alt={nivel}
-                              width={30}
-                              height={30}
+                              width={28}
+                              height={28}
                             />
                           </div>
                         );
@@ -310,17 +310,17 @@ function StatItem({
   const txt = textColor === "white" ? "text-white" : "text-black";
 
   return (
-    <div className={`${bg} flex items-center justify-between p-2 rounded-lg`}>
-      <div className="flex items-center gap-3">
-        <span className="text-xl">{icon}</span>
-        <span className={`font-bold ${txt}`}>{label.toUpperCase()}</span>
+    <div className={`${bg} flex items-center justify-between p-1 rounded-md`}>
+      <div className="flex items-center gap-2">
+        <span className="text-lg">{icon}</span>
+        <span className={`font-bold text-sm ${txt}`}>{label.toUpperCase()}</span>
       </div>
-      <div className="flex items-center gap-2 font-bold text-xl">
+      <div className="flex items-center gap-1 font-bold text-lg">
         <Image
           src={iconUrl}
           alt={`Nivel ${value}`}
-          width={70}
-          height={70}
+          width={40}
+          height={40}
           className="ml-1"
         />
       </div>

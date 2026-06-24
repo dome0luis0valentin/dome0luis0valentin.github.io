@@ -15,10 +15,10 @@ export default function RegisterPage() {
   return (
     <>
     <Header/>
-    <div className="bg-gray-100 min-h-screen flex justify-center items-start pt-12">
+    <div className="min-h-screen flex justify-center items-start pt-12 bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
 
 
-      <div className="rounded-lg shadow-md max-w-md bg-white w-full mx-4">
+      <div className="rounded-lg shadow-md max-w-md w-full mx-4 bg-white dark:bg-gray-800 text-black dark:text-white">
         <section id="register-section">
           <div className="px-4 py-6">
             <h2 className="text-center text-xl font-semibold mb-6">REGISTRARSE</h2>
@@ -29,7 +29,7 @@ export default function RegisterPage() {
                   type="text"
                   placeholder="John Doe"
                   aria-label="Nombre de usuario"
-                  className="w-full border border-gray-300 p-2 rounded mt-1"
+                  className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded mt-1 bg-white dark:bg-gray-700 text-black dark:text-white"
                   required
                 />
               </label>
@@ -39,7 +39,7 @@ export default function RegisterPage() {
                   type="email"
                   placeholder="ejemplo@gmail.com"
                   aria-label="Email"
-                  className="w-full border border-gray-300 p-2 rounded mt-1"
+                  className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded mt-1 bg-white dark:bg-gray-700 text-black dark:text-white"
                   required
                 />
               </label>
@@ -49,14 +49,14 @@ export default function RegisterPage() {
                   type="password"
                   placeholder="••••••"
                   aria-label="Contraseña"
-                  className="w-full border border-gray-300 p-2 rounded mt-1"
+                  className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded mt-1 bg-white dark:bg-gray-700 text-black dark:text-white"
                   required
                 />
               </label>
               <div className="py-2">
                 <button
                   type="submit"
-                  className="bg-gray-800 text-white w-full px-6 py-2 rounded"
+                  className="bg-gray-800 dark:bg-indigo-600 text-white w-full px-6 py-2 rounded"
                 >
                   Crear cuenta
                 </button>

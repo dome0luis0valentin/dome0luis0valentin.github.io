@@ -32,7 +32,7 @@ export default function Testimonials() {
         {testimonios.map((t, idx) => (
           <div
             key={idx}
-            className="bg-white p-6 rounded-lg shadow text-sm border border-gray-200"
+            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow text-sm border border-gray-200 dark:border-gray-700"
             tabIndex={0}
           >
             <div className="flex items-center gap-3 mb-3" tabIndex={0}>
@@ -46,7 +46,7 @@ export default function Testimonials() {
               />
               <div>
                 <div className="flex items-center gap-1" tabIndex={0}>
-                  <span className="font-semibold text-black dark:text-black-100">{t.nombre}</span>
+                  <span className="font-semibold text-gray-900 dark:text-gray-100">{t.nombre}</span>
                   <Image
                     src="https://img.icons8.com/ios-filled/16/777777/verified-account--v1.png"
                     alt="Verificado"
@@ -57,7 +57,7 @@ export default function Testimonials() {
                 <span className="text-gray-800 dark:text-gray-400 text-xs">{t.username}</span>
               </div>
             </div>
-            <p className="text-gray-800 dark:text-gray-800 mb-3" tabIndex={0}>{t.mensaje}</p>
+            <p className="text-gray-800 dark:text-gray-200 mb-3" tabIndex={0}>{t.mensaje}</p>
             <div className="text-gray-500 dark:text-gray-400 text-xs" tabIndex={0}>{t.hora}</div>
           </div>
         ))}

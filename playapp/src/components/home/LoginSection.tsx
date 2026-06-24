@@ -18,8 +18,8 @@ export default function LoginSection() {
 
   return (
     
-    // Fondo para toda la sección
-    <div className={`${darkMode ? "bg-gray-900" : "bg-gray-100"} py-12 flex justify-center`}>
+    // Fondo para toda la sección (hereda body)
+    <div className="py-12 flex justify-center">
       {/* Formulario con fondo y sombra */}
       <div className={`rounded-lg shadow-md max-w-md w-full mx-4 ${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"}`}>
         <section id="login-section">

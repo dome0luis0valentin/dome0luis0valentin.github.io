@@ -32,13 +32,13 @@ export default function Header() {
       <div className="option-header-container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="option-header items-center space-x-2 flex">
           <Image
-            src="https://img.icons8.com/ios-filled/50/ffffff/beach.png"
+            src={darkMode ? "https://img.icons8.com/ios-filled/50/ffffff/beach.png" : "https://img.icons8.com/ios-filled/50/000000/beach.png"}
             alt="Logo"
             width={24}
             height={24}
             className="h-6"
           />
-          <span className="font-bold text-white text-xl">Playapp</span>
+          <span className={`font-bold ${darkMode ? "text-white" : "text-gray-900"} text-xl`}>Playapp</span>
         </div>
         <button onClick={() => setOpen(!open)} className={`${darkMode ? "text-white" : "text-gray-800"} md:hidden cursor-pointer`}>
           ☰
@@ -52,16 +52,16 @@ export default function Header() {
             Conocé más
           </a>
           <button
-            className={`btn btn-primary ${buttonBase} ${darkMode ? "bg-white text-black hover:bg-gray-100" : ""}`}
-            onClick={goToRegister}
-          >
-            Registrarme
-          </button>
-          <button
             className={`btn ${buttonBase} ${darkMode ? "bg-white text-black hover:bg-gray-100" : "btn-ghost"}`}
             onClick={scrollToLogin}
           >
-            Logearme
+            Ingresar
+          </button>
+          <button
+            className={`btn btn-primary ${buttonBase} ${darkMode ? "bg-white text-black hover:bg-gray-100" : ""}`}
+            onClick={goToRegister}
+          >
+            Registrar
           </button>
         </nav>
       </div>

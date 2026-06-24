@@ -20,7 +20,7 @@ export default function Home() {
       <Head>
         <link rel="icon" href="/favicon.ico"></link>
       </Head>
-      <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-gray-100">
+      <div className="min-h-screen">
         <Header />
         <Hero />
         <TopBeaches />

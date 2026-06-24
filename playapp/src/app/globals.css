@@ -10,14 +10,14 @@
 /* Cambiar variables si el sistema prefiere modo oscuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #222d44;
     --foreground: #ededed;
   }
 }
 
 /* Cambiar variables si la clase dark está activa */
 .dark {
-  --background: #0a0a0a;
+  --background: #111827;
   --foreground: #ededed;
 }
 
